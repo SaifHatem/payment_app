@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_paypal_payment: ^1.0.7
   awesome_card: ^1.1.7
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
