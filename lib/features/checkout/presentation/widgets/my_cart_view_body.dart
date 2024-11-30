@@ -1,7 +1,11 @@
+import 'package:final_pay/features/checkout/data/repos/checkout_repo_impl.dart';
+import 'package:final_pay/features/checkout/presentation/manager/cubit/payment_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/utils/images.dart';
 import '../../../../core/utils/spacing.dart';
 import 'order_info_item.dart';
-import 'payment_methods_list_view.dart';
+import 'payment_method_buttom_sheet.dart';
 import 'total_price.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,33 +58,16 @@ class MyCartViewBody extends StatelessWidget {
                 backgroundColor: Colors.white,
                 context: context,
                 builder: (context) {
-                  return const PaymentMethodsButtomSheet();
+                  return BlocProvider(
+                    create: (context) => PaymentCubit(CheckoutRepoImpl()),
+                    child: const PaymentMethodsButtomSheet(),
+                  );
                 },
               );
             },
             buttonText: 'Complete Payment',
           ),
           verticalSpace(12),
-        ],
-      ),
-    );
-  }
-}
-
-class PaymentMethodsButtomSheet extends StatelessWidget {
-  const PaymentMethodsButtomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          verticalSpace(12),
-          const PaymentMethodsListView(),
-          verticalSpace(32),
-          const CustomButton(buttonText: 'Continue')
         ],
       ),
     );

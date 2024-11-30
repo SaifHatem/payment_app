@@ -30,11 +30,15 @@ environment:
 dependencies:
   awesome_card: ^1.1.7
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
+  device_preview: ^1.2.0
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   flutter_screenutil: ^5.9.3
   flutter_stripe: ^11.2.0
+  flutter_stripe_web: ^6.3.0
   flutter_svg: ^2.0.14
   font_awesome_flutter: ^10.8.0
 
