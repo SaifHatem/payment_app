@@ -17,7 +17,9 @@ import '../../../../core/utils/widgets/cutsom_button.dart';
 class CustomButtomBlockConsumer extends StatelessWidget {
   const CustomButtomBlockConsumer({
     super.key,
+    required this.activeIndex,
   });
+  final int activeIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +44,20 @@ class CustomButtomBlockConsumer extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           onTap: () {
-            // PaymentIntentInputModel paymentIntentInputModel =
-            //     PaymentIntentInputModel(
-            //         amount: 1000,
-            //         currency: 'USD',
-            //         customerId: 'cus_RJbWQrSaoXEkdV');
-            // BlocProvider.of<PaymentCubit>(context)
-            //     .makePayment(paymentIntentInputModel: paymentIntentInputModel);
-
-            var transactionData = getTransactionData();
-            executePaypalPayment(context, transactionData);
+            if (activeIndex == 0) {
+              // Execute Card payment logic
+              PaymentIntentInputModel paymentIntentInputModel =
+                  PaymentIntentInputModel(
+                      amount: 1000,
+                      currency: 'USD',
+                      customerId: 'cus_RJbWQrSaoXEkdV');
+              BlocProvider.of<PaymentCubit>(context).makePayment(
+                  paymentIntentInputModel: paymentIntentInputModel);
+            } else if (activeIndex == 1) {
+              // Execute PayPal payment logic
+              var transactionData = getTransactionData();
+              executePaypalPayment(context, transactionData);
+            }
           },
           isLoading: state is PaymentLoading ? true : false,
           buttonText: 'Continue',
